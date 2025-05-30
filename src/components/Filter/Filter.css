@@ -1,0 +1,77 @@
+.filter-container {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  padding: 1rem;
+  background-color: rgba(255, 255, 255, 0.95);
+  -webkit-backdrop-filter: blur(5px);
+  backdrop-filter: blur(5px);
+}
+
+.filter-wrapper {
+  position: relative;
+}
+
+.search-input:focus {
+  box-shadow: none;
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}
+
+.cursor-pointer:hover {
+  background-color: #f8f9fa !important;
+}
+
+.advanced-filters {
+  margin-top: 0.5rem;
+}
+
+/* Animations */
+.filter-advanced-enter {
+  opacity: 0;
+  transform: translateY(-10px);
+}
+
+.filter-advanced-enter-active {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 300ms, transform 300ms;
+}
+
+.filter-advanced-exit {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.filter-advanced-exit-active {
+  opacity: 0;
+  transform: translateY(-10px);
+  transition: opacity 300ms, transform 300ms;
+}
+
+.rating-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.rating-buttons .btn {
+  min-width: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.25rem;
+  transition: all 0.2s ease;
+}
+
+.rating-buttons .btn:hover {
+  transform: translateY(-2px);
+}
+
+@media (max-width: 576px) {
+  .rating-buttons .btn {
+    flex: 1;
+  }
+}
