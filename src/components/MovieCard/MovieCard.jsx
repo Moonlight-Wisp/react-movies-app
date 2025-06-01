@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Card, Badge, OverlayTrigger, Tooltip } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faStar } from '@fortawesome/free-solid-svg-icons';
@@ -9,26 +10,31 @@ import './MovieCard.css';
 const MovieCard = ({ movie }) => {
   const [isLiked, setIsLiked] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
+  const navigate = useNavigate();
 
   return (
-    <Card 
-      className="movie-card h-100"
+    <Card
+      className="movie-card h-100 cursor-pointer"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
+      onClick={() => navigate(`/movie/${encodeURIComponent(movie.title)}`)}
     >
       <div className="movie-image-container">
-        <Card.Img 
-          variant="top" 
-          src={movie.posterURL} 
+        <Card.Img
+          variant="top"
+          src={movie.posterURL}
           alt={movie.title}
           className="movie-image"
         />
         <div className={`movie-overlay ${isHovered ? 'visible' : ''}`}>
           <p className="movie-description">{movie.description}</p>
         </div>
-        <button 
+        <button
           className={`like-button ${isLiked ? 'liked' : ''}`}
-          onClick={() => setIsLiked(!isLiked)}
+          onClick={(e) => {
+            e.stopPropagation();
+            setIsLiked(!isLiked);
+          }}
         >
           <FontAwesomeIcon icon={isLiked ? faHeartSolid : faHeart} />
         </button>
